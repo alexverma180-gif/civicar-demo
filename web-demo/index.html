@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CivicAR Demo — AR View</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>CivicAR</h1>
+    <nav>
+      <a href="index.html" class="active">AR View</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="https://github.com/new" target="_blank" rel="noopener">Create GitHub Repo</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="camera-wrap">
+      <video id="camera" autoplay playsinline></video>
+      <img id="fallback" src="./assets/placeholder.svg" alt="Fallback scene" />
+      <canvas id="overlay"></canvas>
+      <div id="ar-legend" class="legend">
+        <span class="badge">Blue: Future pipeline</span>
+        <span class="badge">Yellow: Road widening</span>
+        <span class="badge">Green: Streetlight</span>
+      </div>
+    </section>
+
+    <section class="controls">
+      <button id="btnStartCamera">Enable Camera</button>
+      <button id="btnToggleOverlays">Toggle Overlays</button>
+      <button id="btnReport">Report Issue</button>
+    </section>
+
+    <section id="reportPanel" class="panel hidden">
+      <h2>Report an Issue</h2>
+      <label>
+        Photo (simulated):
+        <input type="file" id="photoInput" accept="image/*" />
+      </label>
+      <label>
+        Issue Type:
+        <select id="issueType">
+          <option value="pothole">Pothole</option>
+          <option value="garbage">Garbage</option>
+          <option value="overflow">Drain Overflow</option>
+        </select>
+      </label>
+      <button id="btnRunAI">Run AI Validation</button>
+      <div id="aiResult" class="ai"></div>
+      <button id="btnSubmit" disabled>Submit Ticket</button>
+      <button id="btnClosePanel">Close</button>
+    </section>
+
+    <section class="tickets">
+      <h2>My Tickets</h2>
+      <ul id="ticketList"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <small>Demo only — replace mocks with real APIs. © CivicAR</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

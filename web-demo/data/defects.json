@@ -1,0 +1,16 @@
+[
+  {
+    "id": "SEED-1",
+    "type": "pothole",
+    "aiConfidence": 0.91,
+    "status": "Resolved",
+    "createdAt": "2025-06-01T10:00:00Z"
+  },
+  {
+    "id": "SEED-2",
+    "type": "garbage",
+    "aiConfidence": 0.86,
+    "status": "Submitted",
+    "createdAt": "2025-07-12T14:30:00Z"
+  }
+]
