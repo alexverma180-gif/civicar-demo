@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CivicAR Demo — Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>CivicAR — City Dashboard (Mock)</h1>
+    <nav>
+      <a href="index.html">AR View</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="stats">
+      <div class="card">
+        <h3>Total Reports</h3>
+        <div id="statTotal">0</div>
+      </div>
+      <div class="card">
+        <h3>Resolved</h3>
+        <div id="statResolved">0</div>
+      </div>
+      <div class="card">
+        <h3>Avg Resolution (target)</h3>
+        <div>24h</div>
+      </div>
+      <div class="card">
+        <h3>Estimated Rework Saved</h3>
+        <div id="statSavings">30%</div>
+      </div>
+    </section>
+
+    <section class="table">
+      <h2>Recent Tickets</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Type</th><th>Status</th><th>Confidence</th><th>Created</th></tr>
+        </thead>
+        <tbody id="recentTickets"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <small>Mock data for demo; connect to your backend later.</small>
+  </footer>
+
+  <script>
+  const tickets = JSON.parse(localStorage.getItem('civicar_tickets') || '[]').slice(-20).reverse();
+  document.getElementById('statTotal').textContent = tickets.length;
+  const resolved = tickets.filter(t => t.status === 'Resolved').length;
+  document.getElementById('statResolved').textContent = resolved;
+  const tbody = document.getElementById('recentTickets');
+  tickets.forEach(t => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = \`<td>\${t.id}</td><td>\${t.type}</td><td>\${t.status}</td><td>\${(t.aiConfidence*100).toFixed(0)}%</td><td>\${new Date(t.createdAt).toLocaleString()}</td>\`;
+    tbody.appendChild(tr);
+  });
+  </script>
+</body>
+</html>
